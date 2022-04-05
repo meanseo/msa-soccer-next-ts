@@ -4,7 +4,6 @@ import React, {useState} from "react"
 export default function Calc(){
     
     const [inputs, setInputs] = useState({})
-    const {num1, num2, opcode} = inputs;
 
     const handleChange = e =>{
         e.preventDefault()
