@@ -3,9 +3,9 @@ import style from "board/style/board-form.module.css"
 import React, {useState} from "react"
 
 export default function BoardhtmlForm(){
+    const proxy = 'http://localhost:5000'
     const [inputs, setInputs] = useState({})
-    const {passengerId, name, teamId, subject} = inputs;
-    
+
     const handleChange = e => {
         e.preventDefault()
         const {value, name} = e.target;
@@ -16,15 +16,9 @@ export default function BoardhtmlForm(){
     
     const handleSubmit = e => {
         e.preventDefault()
-        axios.post('http://localhost:5000/api/board/write', inputs)
+        axios.post(proxy+'/api/board/write', inputs)
         .then(res => {
-            const result = res.data
-            document.getElementById('result-span').innerHTML = `
-            <h3> ${result.passengerId}</h3>
-            <h3> ${result.name}</h3>
-            <h3> ${result.teamId}</h3>
-            <h3> ${result.subject}</h3>
-            `
+            alert(`결과: ${res.data.result}`)
         })
         .catch(err => alert(err))
     }
