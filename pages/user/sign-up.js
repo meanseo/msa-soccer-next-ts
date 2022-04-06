@@ -13,12 +13,9 @@ export default function SignUp(){
 
     const handleSubmit = e =>{
         e.preventDefault();
-        axios.post('http://localhost:5000/api/user/sign-up', inputs)
+        axios.post('http://localhost:5000/api/user/signup', inputs)
         .then(res=>{
-            const result = res.data
-            document.getElementById('result-span').innerHTML=`
-            <h3> ${result}님, 회원가입 축하합니다.</h3>
-            `
+            alert(`${JSON.stringify(res.data)}`)
         })
         .catch(err =>alert(err))
     }

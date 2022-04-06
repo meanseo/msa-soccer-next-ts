@@ -19,7 +19,7 @@ export default function Calc(){
         .catch(err=> alert(err))
     }
     return (
-        <div>
+        <>
         <form action="" onSubmit={handleSubmit}>
         <h1>Calc 폼</h1>
         <div>
@@ -40,7 +40,7 @@ export default function Calc(){
         </div>
         </form>
         <div> 결과 : <span id ='result-span'></span></div>
-        </div>
+        </>
 
     )
 }
