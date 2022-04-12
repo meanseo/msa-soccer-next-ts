@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-export default function Profile(){
+export default function Profile({id}){
     const router = useRouter()
     const [user, setUser] = useState({})
     useEffect(()=>{
