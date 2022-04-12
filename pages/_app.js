@@ -8,3 +8,4 @@ const App = ({Component, pageProps}) => {
     </Layout>)
 }
 export default wrapper.withRedux(App)
+// 깃 브랜치
