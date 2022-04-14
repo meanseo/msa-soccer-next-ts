@@ -1,4 +1,4 @@
-import { addBoard } from "../../redux/reducers/board.reducer"; 
+import { addBoard } from "../../redux/reducers/boardReducer.ts"; 
 import style from "board/style/board-form.module.css"
 import React, {useState} from "react"
 import { useDispatch } from "react-redux";
@@ -7,14 +7,14 @@ export default function BoardhtmlForm(){
     const [value, setValue] = useState('')
     const dispatch = useDispatch()
     return (<>
-        <form action="" onSubmit={ e => {
-            e.preventDefault()
-            alert('value ?' + value)
-            if(value) dispatch(addBoard({title: value}))
-        }}>
+        <>
         <h1>게시글 등록</h1>
         <div className={style.container}>
-            <htmlForm action="">
+            <form action="" onSubmit={ e => {
+                e.preventDefault()
+                alert('value ?' + value)
+                if(value) dispatch(addBoard({title: value}))
+            }}>
             <div className={style.row}>
                 <div className={style.col25}>
                 <label className={style.label} htmlFor="title">글 제목</label>
@@ -65,8 +65,8 @@ export default function BoardhtmlForm(){
                 value="Submit"/>
             </div>
             
-            </htmlForm>
+            </form>
             </div>
-        </form>
+        </>
     </>)
 }

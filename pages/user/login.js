@@ -18,7 +18,7 @@ import _ from "@lodash";
 // import "features/common/font/font.scss";
 // import "features/common/style/image.scss";
 // import "features/user/style/UserLayout.scss";
-import { loginRequest } from "../../redux/reducers/user.reducer";
+import { loginRequest } from "../../redux/reducers/userReducer.ts";
 import Image from "next/image";
 const Root = styled("div")(({ theme }) => ({
   "& .Login3-leftSection": {},

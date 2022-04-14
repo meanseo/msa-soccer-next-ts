@@ -12,7 +12,7 @@ import  Link  from 'next/link';
 import * as yup from 'yup';
 import _ from '../@lodash';
 // import { CheckList } from '..';
-import { joinRequest } from '../../redux/reducers/user.reducer';
+import { joinRequest } from '../../redux/reducers/userReducer.ts';
 import Image from 'next/image';
 
 /**
@@ -32,10 +32,13 @@ const schema = yup.object().shape({
 });
 
 const defaultValues = {
-  username: '',
+  userid: '',
   password: '',
+  email: '',
   name: '',
-  telephone: '',
+  phone: '',
+  birth: '',
+  address: ''
 };
 
 export default function Join() {
@@ -86,10 +89,9 @@ export default function Join() {
                   name="registerForm"
                   noValidate
                   className="flex flex-col justify-center w-full"
-                  onSubmit={handleSubmit(async (data) => { await dispatch(joinRequest({ ...data, })) })}
                 >
                   <Controller
-                    name="username"
+                    name="userid"
                     control={control}
                     render={({ field }) => (
                       <TextField
@@ -97,9 +99,9 @@ export default function Join() {
                         className="mb-16"
                         label="Name"
                         autoFocus
-                        type="username"
+                        type="userid"
                         error={!!errors.username}
-                        helperText={errors?.username?.message}
+                        helperText={errors?.userid?.message}
                         variant="outlined"
                         required
                         fullWidth
@@ -130,6 +132,25 @@ export default function Join() {
                   <button onClick={() => dispatch(
                     exist(document.getElementById('email').value))}>중복체크</button>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    <Controller
+                    name="name"
+                    control={control}
+                    render={({ field }) => (
+                      <TextField
+                        {...field}
+                        className="mb-16"
+                        label="name"
+                        type="text"
+                        error={!!errors.name}
+                        helperText={errors?.name?.message}
+                        variant="outlined"
+                        required
+                        fullWidth
+                      />
+                    )}
+                  />
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                   <Controller
                     name="phone"

@@ -1,5 +1,5 @@
 import { Layout } from "common"
-import {wrapper} from '../redux/store'
+import {wrapper} from '../redux/store.ts'
 import Head from "next/head"
 
 const App = ({Component, pageProps}) => {
