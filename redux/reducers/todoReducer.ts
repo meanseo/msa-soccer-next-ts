@@ -1,17 +1,41 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = []
+export interface TodoType{
+    userid: string;
+    task: string;
+    complete: string; // value is T or F
+}
+
+export interface TodoState{
+    loading: boolean;
+    data: TodoType[];
+    error: any;
+}
+
+const initialState: TodoState = {
+    loading: false,
+    data: [],
+    error: null
+}
+
 export const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        addTask: (state, action) => {
-            alert('리듀서 내부로 들어온 할 일은?'+action.payload.task)
-            const todo = {id: new Date(), task: action.payload.task, completed: false}
-            state.push(todo)
+        todoRequest(state: TodoState, payload){
+            alert('step 2: 리듀서 내부')
+            state.loading = true;
+        },
+        todoSuccess(state: TodoState, {payload}){
+            state.data = [...state.data, payload]
+            state.loading = false
+        },
+        todoFailure(state: TodoState, {payload}){
+            state.data = payload 
+            state.loading = false
         }
     }
 })
-export const {addTask} = todoSlice.actions
-
-export default todoSlice.reducer
+const { reducer, actions } = todoSlice
+export const todoActions = actions
+export default reducer

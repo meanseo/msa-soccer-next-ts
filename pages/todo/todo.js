@@ -1,32 +1,61 @@
 import React,{useState} from "react";
-import {addTask} from '../../redux/reducers/todoReducer.ts'
 import { useDispatch } from "react-redux";
+import { todoActions } from "../../redux/reducers/todoReducer.ts";
+
 export default function AddTodo() {
-    const [value, setValue] = useState('')
+    const [todo, setTodo] = useState({
+      userid: '', task: '', complete:''
+    })
     const dispatch = useDispatch()
+    const handleChange = e => {
+      e.preventDefault()
+      const{name, value} = e.target;
+      setTodo({...todo,[name]:value})
+    }
+    
   return (
-     <div className="todoapp stack-large">
+     <>
       <h1>일정등록</h1>
-      <form onSubmit={ e => {
-          e.preventDefault()
-          alert('value ?'+value)
-          if(value) dispatch(addTask({task: value})) // value가 있으면 dispatch에게 전달
-      }}>
+      <form onSubmit={
+        e => {
+            e.preventDefault()
+            alert(' step 1: 일정등록 ')
+            dispatch(todoActions.todoRequest(todo))
+            setTodo({
+              userid: '',
+              task: '',
+              complete: ''
+            })
+        }
+    }
+    >
+      <label><b>사용자ID</b></label>
+      <input type="text"
+          id="new-todo-input"
+          className="input input__lg"
+          name="userid"
+          autoComplete="off"
+          onChange={handleChange}
+        /><br/>
+        <label><b>일정</b></label>
         <input
           type="text"
           id="new-todo-input"
           className="input input__lg"
-          name="text"
+          name="task"
           autoComplete="off"
-          onChange={e => {
-              e.preventDefault()
-              setValue(e.target.value)
-          }}
-        />
+          onChange={handleChange}
+        /><br/>
+        <label><b>완료 여부</b></label>
+        <select name="complete" onChange={handleChange}>
+                <option value="T">T</option>
+                <option value="F">F</option>
+            </select><br/>
         <button type="submit" style={{marginLeft:"20px"}} className="btn btn__primary btn__lg">
           Add
         </button>
       </form>
+      
        {/**
       <h2 id="list-heading">
         3 tasks remaining
@@ -61,6 +90,6 @@ export default function AddTodo() {
           </div>
         </li>
       </ul>*/}
-    </div>
+    </>
   );
 }
