@@ -46,14 +46,16 @@ const defaultValues = {
   name: "",
   telephone: "",
 };
-export default function Login3Page() {
+export default function LoginPage() {
   const dispatch = useDispatch();
   const { control, formState, handleSubmit, reset } = useForm({
     mode: "onChange",
     defaultValues,
     resolver: yupResolver(schema),
   });
+
   const { isValid, dirtyFields, errors } = formState;
+
   function onSubmit() {
     reset(defaultValues);
   }

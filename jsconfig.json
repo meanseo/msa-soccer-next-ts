@@ -5,5 +5,5 @@
     "include": [
         "pages/**/*.js",
         "redux/**/*.ts"
-      ]
+, "pages/board/removeArticle.js"      ]
 }
