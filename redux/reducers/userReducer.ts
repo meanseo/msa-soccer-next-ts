@@ -36,9 +36,22 @@ export const userSlice = createSlice({
         joinFailure(state: UserState, {payload}){
             state.data = payload 
             state.loading = false
+        },
+        loginRequest(state: UserState, payload){
+            alert('진행 2: 로그인 리듀서 내부')
+            state.loading = true;
+        },
+        loginSuccess(state: UserState, {payload}){
+            state.data = [...state.data, payload]
+            state.loading = false
+        },
+        loginFailure(state: UserState, {payload}){
+            state.data = payload 
+            state.loading = false
         }
+
     }
 })
 const { reducer, actions } = userSlice
-export const userAction = actions
+export const userActions = actions
 export default reducer

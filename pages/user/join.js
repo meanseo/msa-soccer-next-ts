@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useDispatch } from 'react-redux';
-import { userAction } from '../../redux/reducers/userReducer.ts';
+import { userActions } from '../../redux/reducers/userReducer.ts';
 import tableStyles from '../common/styles/table.module.css'
 
 export default function  Join(){
@@ -13,12 +13,15 @@ export default function  Join(){
         const{name, value} = e.target;
         setUser({...user,[name]: value})
     }
+    const hendleClick = e => {
+        window.location.href = "./login"
+    }
     return <>
     <form onSubmit={
         e => {
             e.preventDefault()
             alert(' 진행 1: 회원가입 클릭 ')
-            dispatch(userAction.joinRequest(user))
+            dispatch(userActions.joinRequest(user))
             setUser({
                 userid:'', password:'', email:'', name:'', phone:'', birth:'', address:''
             })
@@ -64,7 +67,7 @@ export default function  Join(){
                     <td><input type="text" name='address' onChange={handleChange}/></td>
                 </tr>
                 <tr>
-                    <td colSpan={2}><button type="submit">회원가입</button><br /></td>
+                    <td colSpan={2}><button type="submit" onClick={hendleClick}>회원가입</button><br /></td>
                 </tr>
             </tbody>
         </table>
